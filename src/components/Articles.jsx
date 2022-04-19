@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api";
+import { Link } from "react-router-dom";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
@@ -13,6 +14,10 @@ const Articles = () => {
 
   return (
     <main>
+      <h1>
+        <Link to="/">Articles Home</Link>
+      </h1>
+
       <h2>List of our artilces</h2>
       {articles.map((article) => {
         return (

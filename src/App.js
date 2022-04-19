@@ -7,24 +7,19 @@ import Articles from "./components/Articles";
 function App() {
   return (
     <div className="App">
+      <Header />
+      <Articles />
+
       <Nav />
       <Routes>
-        <Route
+        {/* <Route
           path="/"
-          element={
-            <p>
-              <Header />
-            </p>
-          }
-        ></Route>
-        <Route
-          path="/articles"
           element={
             <p>
               <Articles />
             </p>
           }
-        ></Route>
+        ></Route> */}
       </Routes>
     </div>
   );
