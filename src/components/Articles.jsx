@@ -7,7 +7,6 @@ const Articles = () => {
 
   useEffect(() => {
     getArticles().then((articlesFromAPi) => {
-      console.log(articlesFromAPi, "<<<<<<<<");
       setArticles(articlesFromAPi);
     });
   }, []);
