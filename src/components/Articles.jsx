@@ -19,6 +19,9 @@ const Articles = () => {
           <ul>
             <li key={article.article_id}>
               <h2>{article.title}</h2>
+              <p>topic: {article.topic}</p>
+              <p>votes: {article.votes}</p>
+              <p>author: {article.author}</p>
             </li>
           </ul>
         );
