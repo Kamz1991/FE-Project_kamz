@@ -1,11 +1,15 @@
 import axios from "axios";
 
 const articlesApi = axios.create({
-  baseURL: "https://kamz-backend-projct.herokuapp.com/api",
+  baseURL: "https://kamz-be-project.herokuapp.com/api/",
 });
 
-export const getArticles = () => {
-  return articlesApi.get("/articles").then(({ data }) => {
+export const getArticles = (topic) => {
+  let path = "/articles";
+  if (topic) {
+    path += `/?topic=${topic}`;
+  }
+  return articlesApi.get(path).then(({ data }) => {
     return data.articles;
   });
 };

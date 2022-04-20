@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
-const Articles = () => {
-  const [articles, setArticles] = useState([]);
+const Topic = () => {
+  const { topic } = useParams();
 
+  const [topicArticles, setTopicArticles] = useState([]);
   useEffect(() => {
-    getArticles().then((articlesFromAPi) => {
-      setArticles(articlesFromAPi);
+    getArticles(topic).then((articlesFromAPi) => {
+      setTopicArticles(articlesFromAPi);
     });
-  }, []);
+  }, [setTopicArticles, topic]);
 
   return (
     <main>
@@ -17,8 +19,8 @@ const Articles = () => {
         <Link to="/">Articles Home</Link>
       </h1>
 
-      <h2>List of our articles</h2>
-      {articles.map((article) => {
+      <h2>List of our {topic} articles</h2>
+      {topicArticles.map((article) => {
         return (
           <ul>
             <li key={article.article_id}>
@@ -33,4 +35,5 @@ const Articles = () => {
     </main>
   );
 };
-export default Articles;
+
+export default Topic;
