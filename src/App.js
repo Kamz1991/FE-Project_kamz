@@ -3,23 +3,30 @@ import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import Articles from "./components/Articles";
-
+import { useState } from "react";
+import Topic from "./components/Topic";
 function App() {
   return (
     <div className="App">
       <Header />
-      <Articles />
-
       <Nav />
       <Routes>
-        {/* <Route
+        <Route
           path="/"
           element={
             <p>
               <Articles />
             </p>
           }
-        ></Route> */}
+        ></Route>
+        <Route
+          path="/:topic"
+          element={
+            <p>
+              <Topic />
+            </p>
+          }
+        ></Route>
       </Routes>
     </div>
   );
