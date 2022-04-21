@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getSingleArticle } from "../api";
 import { Link } from "react-router-dom";
+import VoteButton from "./VoteButton";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -23,7 +24,9 @@ const SingleArticle = () => {
       <p>author: {singleArticle.author}</p>
       <p>body: {singleArticle.body}</p>
       <p> created at:{singleArticle.created_at}</p>
-      <p> votes: {singleArticle.votes}</p>
+      <p>
+        <VoteButton />
+      </p>
       <p>comment count: {singleArticle.comment_count}</p>
     </main>
   );
