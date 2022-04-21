@@ -28,3 +28,9 @@ export const getSingleArticle = (article_id) => {
     return data.article;
   });
 };
+export const patchVotes = (article_id, votes) => {
+  let path = `/articles/${article_id}`;
+  return articlesApi.patch(path, { inc_votes: votes }).then(({ data }) => {
+    return data.article;
+  });
+};

@@ -18,9 +18,9 @@ const Articles = () => {
       </h1>
 
       <h2>List of our artilces</h2>
-      {articles.map((article) => {
-        return (
-          <ul>
+      <ul>
+        {articles.map((article) => {
+          return (
             <li key={article.article_id}>
               <Link to={`/article/${article.article_id}`}>
                 <h2>{article.title}</h2>
@@ -29,9 +29,9 @@ const Articles = () => {
               <p>votes: {article.votes}</p>
               <p>author: {article.author}</p>
             </li>
-          </ul>
-        );
-      })}
+          );
+        })}
+      </ul>
     </main>
   );
 };

@@ -3,7 +3,6 @@ import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
 import Nav from "./components/Nav";
 import Articles from "./components/Articles";
-import { useState } from "react";
 import Topic from "./components/Topic";
 import SingleArticle from "./components/SingleArticle";
 function App() {
@@ -12,31 +11,9 @@ function App() {
       <Header />
       <Nav />
       <Routes>
-        <Route
-          path="/article/:article_id"
-          element={
-            <p>
-              <SingleArticle />
-            </p>
-          }
-        ></Route>
-
-        <Route
-          path="/"
-          element={
-            <p>
-              <Articles />
-            </p>
-          }
-        ></Route>
-        <Route
-          path="/:topic"
-          element={
-            <p>
-              <Topic />
-            </p>
-          }
-        ></Route>
+        <Route path="/article/:article_id" element={<SingleArticle />} />
+        <Route path="/" element={<Articles />} />
+        <Route path="/:topic" element={<Topic />} />
       </Routes>
     </div>
   );

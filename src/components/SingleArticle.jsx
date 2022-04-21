@@ -6,12 +6,13 @@ import VoteButton from "./VoteButton";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
-  const [singleArticle, setSingleArticle] = useState([]);
+  const [singleArticle, setSingleArticle] = useState({});
   useEffect(() => {
     getSingleArticle(article_id).then((articleFromApi) => {
       setSingleArticle(articleFromApi);
     });
-  }, [setSingleArticle, article_id]);
+  }, [article_id]);
+  if (!singleArticle) return null;
   return (
     <main>
       <h1>
@@ -20,14 +21,17 @@ const SingleArticle = () => {
 
       <h2>{singleArticle.title}</h2>
       <p>topic: {singleArticle.topic}</p>
-      <p>votes: {singleArticle.votes}</p>
+
       <p>author: {singleArticle.author}</p>
       <p>body: {singleArticle.body}</p>
       <p> created at:{singleArticle.created_at}</p>
-      <p>
-        <VoteButton />
-      </p>
+
       <p>comment count: {singleArticle.comment_count}</p>
+      <VoteButton
+        article_id={singleArticle.article_id}
+        votes={singleArticle.votes}
+        setSingleArticle={setSingleArticle}
+      />
     </main>
   );
 };
