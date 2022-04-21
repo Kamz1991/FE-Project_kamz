@@ -13,3 +13,24 @@ export const getArticles = (topic) => {
     return data.articles;
   });
 };
+
+export const getTopics = () => {
+  let path = "/topics";
+  return articlesApi.get(path).then(({ data }) => {
+    return data.topics;
+  });
+};
+
+export const getSingleArticle = (article_id) => {
+  let path = `/articles/${article_id}`;
+
+  return articlesApi.get(path).then(({ data }) => {
+    return data.article;
+  });
+};
+export const patchVotes = (article_id, votes) => {
+  let path = `/articles/${article_id}`;
+  return articlesApi.patch(path, { inc_votes: votes }).then(({ data }) => {
+    return data.article;
+  });
+};
