@@ -42,3 +42,13 @@ export const getComments = (article_id) => {
     return data.comments;
   });
 };
+
+export const postedComments = (article_id, newComment, username) => {
+  let path = `/articles/${article_id}/comments`;
+
+  return articlesApi
+    .post(path, { body: newComment, username: username })
+    .then(({ data }) => {
+      return data.comment;
+    });
+};

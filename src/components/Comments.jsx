@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { getComments } from "../api";
 import { useParams } from "react-router-dom";
+import PostComments from "./PostComments";
 
-const Comments = () => {
+const Comments = ({ setSingleArticle }) => {
   const [comments, setComments] = useState([]);
   const { article_id } = useParams();
 
@@ -14,6 +15,11 @@ const Comments = () => {
 
   return (
     <div>
+      <PostComments
+        setSingleArticle={setSingleArticle}
+        article_id={article_id}
+        comments={comments}
+      />
       <h2>Comments</h2>
       <ul className="comments_list">
         {comments.map((comment) => {

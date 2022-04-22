@@ -4,6 +4,7 @@ import { getSingleArticle } from "../api";
 import { Link } from "react-router-dom";
 import VoteButton from "./VoteButton";
 import Comments from "./Comments";
+import PostComments from "./PostComments";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -28,12 +29,14 @@ const SingleArticle = () => {
       <p> created at:{singleArticle.created_at}</p>
 
       <p>comment count: {singleArticle.comment_count}</p>
+
       <VoteButton
         article_id={singleArticle.article_id}
         votes={singleArticle.votes}
         setSingleArticle={setSingleArticle}
       />
-      <Comments />
+
+      <Comments setSingleArticle={setSingleArticle} />
     </main>
   );
 };
