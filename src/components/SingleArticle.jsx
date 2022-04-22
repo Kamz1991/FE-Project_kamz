@@ -4,7 +4,6 @@ import { getSingleArticle } from "../api";
 import { Link } from "react-router-dom";
 import VoteButton from "./VoteButton";
 import Comments from "./Comments";
-import PostComments from "./PostComments";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
