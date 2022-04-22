@@ -28,12 +28,14 @@ const SingleArticle = () => {
       <p> created at:{singleArticle.created_at}</p>
 
       <p>comment count: {singleArticle.comment_count}</p>
+
       <VoteButton
         article_id={singleArticle.article_id}
         votes={singleArticle.votes}
         setSingleArticle={setSingleArticle}
       />
-      <Comments />
+
+      <Comments setSingleArticle={setSingleArticle} />
     </main>
   );
 };
