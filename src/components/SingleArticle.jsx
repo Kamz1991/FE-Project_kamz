@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { getSingleArticle } from "../api";
 import { Link } from "react-router-dom";
 import VoteButton from "./VoteButton";
+import Comments from "./Comments";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -32,6 +33,7 @@ const SingleArticle = () => {
         votes={singleArticle.votes}
         setSingleArticle={setSingleArticle}
       />
+      <Comments />
     </main>
   );
 };
