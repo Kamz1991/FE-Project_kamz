@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
-
+  //
   useEffect(() => {
     getArticles().then((articlesFromAPi) => {
       setArticles(articlesFromAPi);
