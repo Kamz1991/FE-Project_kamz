@@ -18,11 +18,10 @@ const Topic = () => {
       <h1>
         <Link to="/">Articles Home</Link>
       </h1>
-
-      <h2>List of our {topic} articles</h2>
-      {topicArticles.map((article) => {
-        return (
-          <ul>
+      <ul>
+        <h2>List of our {topic} articles</h2>
+        {topicArticles.map((article) => {
+          return (
             <li key={article.article_id}>
               <Link to={`/article/${article.article_id}`}>
                 <h2>{article.title}</h2>
@@ -31,9 +30,9 @@ const Topic = () => {
               <p>votes: {article.votes}</p>
               <p>author: {article.author}</p>
             </li>
-          </ul>
-        );
-      })}
+          );
+        })}
+      </ul>
     </main>
   );
 };

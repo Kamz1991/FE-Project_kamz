@@ -34,3 +34,11 @@ export const patchVotes = (article_id, votes) => {
     return data.article;
   });
 };
+
+export const getComments = (article_id) => {
+  let path = `/articles/${article_id}/comments`;
+
+  return articlesApi.get(path).then(({ data }) => {
+    return data.comments;
+  });
+};
