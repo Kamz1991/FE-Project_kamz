@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getArticles } from "../api";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import SortByDropDown from "./SortByDropDown";
 
 const Topic = () => {
   const { topic } = useParams();
@@ -18,6 +19,7 @@ const Topic = () => {
       <h1>
         <Link to="/">Articles Home</Link>
       </h1>
+      <SortByDropDown />
       <ul>
         <h2>List of our {topic} articles</h2>
         {topicArticles.map((article) => {
