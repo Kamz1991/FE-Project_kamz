@@ -5,15 +5,24 @@ import Nav from "./components/Nav";
 import Articles from "./components/Articles";
 import Topic from "./components/Topic";
 import SingleArticle from "./components/SingleArticle";
+import { useState } from "react";
 function App() {
+  // const [topics, setTopics] = useState("");
+  const [query, setQuery] = useState("");
   return (
     <div className="App">
       <Header />
       <Nav />
       <Routes>
         <Route path="/article/:article_id" element={<SingleArticle />} />
-        <Route path="/" element={<Articles />} />
-        <Route path="/:topic" element={<Topic />} />
+        <Route
+          path="/"
+          element={<Articles query={query} setQuery={setQuery} />}
+        />
+        <Route
+          path="/:topic"
+          element={<Topic query={query} setQuery={setQuery} />}
+        />
       </Routes>
     </div>
   );

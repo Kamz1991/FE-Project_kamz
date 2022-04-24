@@ -1,23 +1,29 @@
 import { useEffect, useState } from "react";
 import { getArticles } from "../api";
 import { Link } from "react-router-dom";
+import SortByDropDown from "./SortByDropDown";
 
-const Articles = () => {
+const Articles = ({ query, setQuery }) => {
   const [articles, setArticles] = useState([]);
 
   useEffect(() => {
-    getArticles().then((articlesFromAPi) => {
+    const lastIndexOf_ = query.lastIndexOf("_");
+    console.log(lastIndexOf_);
+    const sortBYQuery = query.slice(0, lastIndexOf_);
+    const orderByQuery = query.slice(lastIndexOf_ + 1);
+    getArticles("", sortBYQuery, orderByQuery).then((articlesFromAPi) => {
       setArticles(articlesFromAPi);
     });
-  }, []);
+  }, [query]);
 
   return (
     <main>
       <h1>
         <Link to="/">Articles Home</Link>
       </h1>
+      <SortByDropDown query={query} setQuery={setQuery} />
 
-      <h2>List of our artilces</h2>
+      <h2>List of our articles</h2>
       <ul>
         {articles.map((article) => {
           return (
@@ -28,6 +34,8 @@ const Articles = () => {
               <p>topic: {article.topic}</p>
               <p>votes: {article.votes}</p>
               <p>author: {article.author}</p>
+              <p>created: {article.created_at}</p>
+              <p>comment count: {article.comment_count}</p>
             </li>
           );
         })}

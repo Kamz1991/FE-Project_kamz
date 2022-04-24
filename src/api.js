@@ -4,14 +4,28 @@ const articlesApi = axios.create({
   baseURL: "https://kamz-be-project.herokuapp.com/api/",
 });
 
-export const getArticles = (topic) => {
+export const getArticles = (topic, sort_by, order) => {
   let path = "/articles";
+
   if (topic) {
     path += `/?topic=${topic}`;
   }
-  return articlesApi.get(path).then(({ data }) => {
-    return data.articles;
-  });
+  // console.log({ path });
+  console.log(path, sort_by, order);
+  let params = {};
+  if (sort_by && order) {
+    params = {
+      sort_by,
+      order,
+    };
+  }
+  return articlesApi
+    .get(path, {
+      params: params,
+    })
+    .then(({ data }) => {
+      return data.articles;
+    });
 };
 
 export const getTopics = () => {
