@@ -1,6 +1,20 @@
-import { Link } from "react-router-dom";
-const Header = () => {
-  return <h1 className="main-header">NC News</h1>;
-};
+import AppBar from "@mui/material/AppBar";
+import Box from "@mui/material/Box";
+import Toolbar from "@mui/material/Toolbar";
+import Typography from "@mui/material/Typography";
+
+function Header() {
+  return (
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="static">
+        <Toolbar>
+          <Typography variant="h4" component="div" sx={{ flexGrow: 1 }}>
+            Kamz Articles
+          </Typography>
+        </Toolbar>
+      </AppBar>
+    </Box>
+  );
+}
 
 export default Header;

@@ -13,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Navigation />
+      {/* <Navigation />
       <Routes>
         <Route path="/article/:article_id" element={<SingleArticle />} />
         <Route
@@ -25,7 +25,7 @@ function App() {
           element={<Topic query={query} setQuery={setQuery} />}
         />
         <Route path="*" element={<NotFound />} />
-      </Routes>
+      </Routes> */}
     </div>
   );
 }
