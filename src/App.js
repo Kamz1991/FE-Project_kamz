@@ -13,8 +13,8 @@ function App() {
   return (
     <div className="App">
       <Header />
-      {/* <Navigation />
-      <Routes>
+      <Navigation />
+      {/*  <Routes>
         <Route path="/article/:article_id" element={<SingleArticle />} />
         <Route
           path="/"

@@ -38,7 +38,6 @@ export const getArticles = (topic, sort_by, order) => {
 export const getTopics = () => {
   let path = "/topics";
   return articlesApi.get(path).then(({ data }) => {
-    console.log({ data });
     return data.topics;
   });
   // return axios.get("http://localhost:9090/api/topics").then((response) => {
