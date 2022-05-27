@@ -14,6 +14,9 @@ function App() {
     <div className="App">
       <Header />
       <Navigation />
+      <Routes>
+        <Route path="/" element={<Articles />} />
+      </Routes>
       {/*  <Routes>
         <Route path="/article/:article_id" element={<SingleArticle />} />
         <Route
