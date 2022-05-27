@@ -8,26 +8,43 @@ import Comments from "./Comments";
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [singleArticle, setSingleArticle] = useState({});
+  const [error, setError] = useState(null);
+
   useEffect(() => {
-    getSingleArticle(article_id).then((articleFromApi) => {
-      setSingleArticle(articleFromApi);
-    });
+    getSingleArticle(article_id)
+      .then((articleFromApi) => {
+        setSingleArticle(articleFromApi);
+      })
+      .catch((err) => {
+        setError("error");
+      });
   }, [article_id]);
   if (!singleArticle) return null;
+
+  if (error) {
+    return <p className="not-found">Sorry, we couldn't find that article</p>;
+  }
+
   return (
-    <main>
+    <main className="single-article">
       <h1>
-        <Link to="/">Home page</Link>
+        <Link to="/">
+          <h2 className="header">Home page</h2>
+        </Link>
       </h1>
 
       <h2>{singleArticle.title}</h2>
-      <p>topic: {singleArticle.topic}</p>
+      <p className="single-article-text">topic: {singleArticle.topic}</p>
 
-      <p>author: {singleArticle.author}</p>
-      <p>body: {singleArticle.body}</p>
-      <p> created at:{singleArticle.created_at}</p>
+      <p className="single-article-text">author: {singleArticle.author}</p>
+      <p className="single-article-text">body: {singleArticle.body}</p>
+      <p className="single-article-text">
+        created at:{singleArticle.created_at}
+      </p>
 
-      <p>comment count: {singleArticle.comment_count}</p>
+      <p className="single-article-text">
+        comment count: {singleArticle.comment_count}
+      </p>
 
       <VoteButton
         article_id={singleArticle.article_id}

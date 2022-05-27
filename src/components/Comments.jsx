@@ -25,8 +25,8 @@ const Comments = () => {
         {comments.map((comment) => {
           return (
             <li key={comment.comment_id}>
-              <h5>{comment.author}</h5>
-              <p>{comment.body}</p>
+              <h5 className="comments-author">{comment.author}</h5>
+              <p className="comments">{comment.body}</p>
             </li>
           );
         })}

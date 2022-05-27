@@ -1,10 +1,11 @@
 import "./App.css";
 import Header from "./components/Header";
 import { Route, Routes } from "react-router-dom";
-import Nav from "./components/Nav";
+import Navigation from "./components/Navigation";
 import Articles from "./components/Articles";
 import Topic from "./components/Topic";
 import SingleArticle from "./components/SingleArticle";
+import NotFound from "./components/NotFound.jsx";
 import { useState } from "react";
 function App() {
   // const [topics, setTopics] = useState("");
@@ -12,7 +13,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Nav />
+      <Navigation />
       <Routes>
         <Route path="/article/:article_id" element={<SingleArticle />} />
         <Route
@@ -23,6 +24,7 @@ function App() {
           path="/:topic"
           element={<Topic query={query} setQuery={setQuery} />}
         />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );

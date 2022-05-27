@@ -24,7 +24,8 @@ function VoteButton({ article_id, votes, setSingleArticle }) {
   ]);
 
   if (!article_id) return null;
-  const handleClick = (newVote) => {
+  const handleClick = (e, newVote) => {
+    e.preventDefault();
     setHaveBeenClicked(true);
     setChangeToVote(newVote);
     setDisplayedVotes(votes + newVote);
@@ -37,7 +38,7 @@ function VoteButton({ article_id, votes, setSingleArticle }) {
       <button className="red-button" onClick={() => handleClick(-1)}>
         👎🏽
       </button>
-      <p>vote:{displayedVotes || votes}</p>
+      <p className="vote-text">vote:{displayedVotes || votes}</p>
     </div>
   );
 }

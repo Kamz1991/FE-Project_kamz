@@ -21,6 +21,7 @@ const PostComments = ({ article_id, comments, setComments }) => {
   return (
     <form onSubmit={handleClick}>
       <textarea
+        required
         value={commentToAdd}
         onChange={(e) => setCommentToAdd(e.target.value)}
       ></textarea>
