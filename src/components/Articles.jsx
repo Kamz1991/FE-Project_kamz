@@ -1,23 +1,21 @@
 import { useState, useEffect } from "react";
 import { getArticles } from "../api";
 import CircularProgress from "@mui/material/CircularProgress";
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-const Articles = () => {
+const Articles = ({ currentTopic }) => {
   const [articles, setArticles] = useState([]);
   const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getArticles().then((allArticles) => {
+    getArticles(currentTopic).then((allArticles) => {
+      console.log(currentTopic);
       setArticles(allArticles);
       setIsLoading(false);
     });
-  }, []);
+  }, [currentTopic]);
 
   if (loading)
     return (
@@ -25,11 +23,12 @@ const Articles = () => {
         <CircularProgress />
       </div>
     );
+
   return (
     <div className="articles-container">
       {articles.map((article) => {
         return (
-          <div className="article-card">
+          <div key={article.id} className="article-card">
             <Card sx={{ maxWidth: "45vw" }}>
               <CardContent>
                 <Typography variant="h6" gutterBottom>

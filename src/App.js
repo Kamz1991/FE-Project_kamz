@@ -8,14 +8,17 @@ import SingleArticle from "./components/SingleArticle";
 import NotFound from "./components/NotFound.jsx";
 import { useState } from "react";
 function App() {
-  // const [topics, setTopics] = useState("");
-  const [query, setQuery] = useState("");
+  const [currentTopic, setCurrentTopic] = useState("");
+
   return (
     <div className="App">
       <Header />
-      <Navigation />
+      <Navigation
+        setCurrentTopic={setCurrentTopic}
+        currentTopic={currentTopic}
+      />
       <Routes>
-        <Route path="/" element={<Articles />} />
+        <Route path="/" element={<Articles currentTopic={currentTopic} />} />
       </Routes>
       {/*  <Routes>
         <Route path="/article/:article_id" element={<SingleArticle />} />
