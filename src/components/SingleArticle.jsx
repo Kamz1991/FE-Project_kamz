@@ -1,59 +1,54 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getSingleArticle } from "../api";
-import { Link } from "react-router-dom";
-import VoteButton from "./VoteButton";
-import Comments from "./Comments";
+import CircularProgress from "@mui/material/CircularProgress";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Typography from "@mui/material/Typography";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
-  const [singleArticle, setSingleArticle] = useState({});
+  const [article, setArticle] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     getSingleArticle(article_id)
       .then((articleFromApi) => {
-        setSingleArticle(articleFromApi);
+        setArticle(articleFromApi);
       })
       .catch((err) => {
         setError("error");
       });
   }, [article_id]);
-  if (!singleArticle) return null;
+
+  if (article === null) {
+    return (
+      <div>
+        <CircularProgress />
+      </div>
+    );
+  }
 
   if (error) {
-    return <p className="not-found">Sorry, we couldn't find that article</p>;
+    <h2>it dead</h2>;
   }
 
   return (
-    <main className="single-article">
-      <h1>
-        <Link to="/">
-          <h2 className="header">Home page</h2>
-        </Link>
-      </h1>
+    <div>
+      <Card sx={{ margin: "10px" }}>
+        <CardContent>
+          <Typography variant="h6" gutterBottom>
+            {article.title}
+          </Typography>
 
-      <h2>{singleArticle.title}</h2>
-      <p className="single-article-text">topic: {singleArticle.topic}</p>
-
-      <p className="single-article-text">author: {singleArticle.author}</p>
-      <p className="single-article-text">body: {singleArticle.body}</p>
-      <p className="single-article-text">
-        created at:{singleArticle.created_at}
-      </p>
-
-      <p className="single-article-text">
-        comment count: {singleArticle.comment_count}
-      </p>
-
-      <VoteButton
-        article_id={singleArticle.article_id}
-        votes={singleArticle.votes}
-        setSingleArticle={setSingleArticle}
-      />
-
-      <Comments setSingleArticle={setSingleArticle} />
-    </main>
+          <Typography color="text.secondary">topic: {article.topic}</Typography>
+          <Typography color="text.secondary" gutterBottom>
+            votes: {article.votes}
+          </Typography>
+          <Typography>{article.body}</Typography>
+        </CardContent>
+      </Card>
+    </div>
   );
 };
 

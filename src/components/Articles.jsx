@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { getArticles } from "../api";
 import CircularProgress from "@mui/material/CircularProgress";
 import Card from "@mui/material/Card";
@@ -9,9 +10,10 @@ const Articles = ({ currentTopic }) => {
   const [articles, setArticles] = useState([]);
   const [loading, setIsLoading] = useState(true);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     getArticles(currentTopic).then((allArticles) => {
-      console.log(currentTopic);
       setArticles(allArticles);
       setIsLoading(false);
     });
@@ -28,8 +30,13 @@ const Articles = ({ currentTopic }) => {
     <div className="articles-container">
       {articles.map((article) => {
         return (
-          <div key={article.id} className="article-card">
-            <Card sx={{ maxWidth: "45vw" }}>
+          <div key={article.article_id} className="article-card">
+            <Card
+              sx={{ maxWidth: "45vw" }}
+              onClick={() => {
+                navigate(`/article/${article.article_id}`);
+              }}
+            >
               <CardContent>
                 <Typography variant="h6" gutterBottom>
                   {article.title}
