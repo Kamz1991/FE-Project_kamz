@@ -5,8 +5,10 @@ import Navigation from "./components/Navigation";
 import Articles from "./components/Articles";
 import SingleArticle from "./components/SingleArticle";
 import { useState } from "react";
+import SortByDropDown from "./components/SortByDropDown";
 function App() {
   const [currentTopic, setCurrentTopic] = useState("");
+  const [query, setQuery] = useState("");
 
   return (
     <div className="App">
@@ -15,8 +17,13 @@ function App() {
         setCurrentTopic={setCurrentTopic}
         currentTopic={currentTopic}
       />
+      <SortByDropDown setQuery={setQuery} />
+
       <Routes>
-        <Route path="/" element={<Articles currentTopic={currentTopic} />} />
+        <Route
+          path="/"
+          element={<Articles currentTopic={currentTopic} query={query} />}
+        />
         <Route path="/article/:article_id" element={<SingleArticle />} />
       </Routes>
       {/*  <Routes>

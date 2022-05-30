@@ -6,7 +6,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 
-const Articles = ({ currentTopic }) => {
+const Articles = ({ currentTopic, query }) => {
   const [articles, setArticles] = useState([]);
   const [loading, setIsLoading] = useState(true);
 
@@ -25,6 +25,8 @@ const Articles = ({ currentTopic }) => {
         <CircularProgress />
       </div>
     );
+
+  console.log("query >>>>>", query);
 
   return (
     <div className="articles-container">
