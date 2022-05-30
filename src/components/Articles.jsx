@@ -33,8 +33,6 @@ const Articles = ({ currentTopic, query }) => {
       </div>
     );
 
-  console.log("query >>>>>", query);
-
   return (
     <div className="articles-container">
       {articles.map((article) => {

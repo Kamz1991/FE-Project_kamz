@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getComments } from "../api";
 import { useParams } from "react-router-dom";
 import PostComments from "./PostComments";
+import { Card, CardContent, Typography } from "@mui/material";
 
 const Comments = () => {
   const [comments, setComments] = useState([]);
@@ -24,10 +25,12 @@ const Comments = () => {
       <ul className="comments_list">
         {comments.map((comment) => {
           return (
-            <li key={comment.comment_id}>
-              <h5 className="comments-author">{comment.author}</h5>
-              <p className="comments">{comment.body}</p>
-            </li>
+            <Card>
+              <CardContent>
+                <Typography variant="h6">{comment.author}</Typography>
+                <Typography>{comment.body}</Typography>
+              </CardContent>
+            </Card>
           );
         })}
       </ul>
