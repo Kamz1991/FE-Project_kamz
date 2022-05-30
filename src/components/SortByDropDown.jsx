@@ -7,13 +7,11 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-const SortByDropDown = ({ setCurrentTopic, currentTopic, setQuery }) => {
-  const [topics, setTopics] = useState([]);
+const SortByDropDown = ({ query, setQuery }) => {
   const [loading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getTopics().then((topicsFromApi) => {
-      setTopics(topicsFromApi);
       setIsLoading(false);
     });
   }, []);
@@ -44,7 +42,7 @@ const SortByDropDown = ({ setCurrentTopic, currentTopic, setQuery }) => {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={currentTopic}
+            value={query}
             label="Age"
             onChange={handleChange}
             variant="outlined"

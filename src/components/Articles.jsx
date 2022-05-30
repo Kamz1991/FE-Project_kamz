@@ -5,6 +5,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
+import moment from "moment";
 
 const Articles = ({ currentTopic, query }) => {
   const [articles, setArticles] = useState([]);
@@ -13,11 +14,17 @@ const Articles = ({ currentTopic, query }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    getArticles(currentTopic).then((allArticles) => {
+    // splits sortByQuery query and orderByQuery
+    // eg. created_at_desc -> created_at and desc
+    const lastIndexOf_ = query.lastIndexOf("_");
+    const sortByQuery = query.slice(0, lastIndexOf_);
+    const orderByQuery = query.slice(lastIndexOf_ + 1);
+
+    getArticles(currentTopic, sortByQuery, orderByQuery).then((allArticles) => {
       setArticles(allArticles);
       setIsLoading(false);
     });
-  }, [currentTopic]);
+  }, [currentTopic, query]);
 
   if (loading)
     return (
@@ -49,6 +56,10 @@ const Articles = ({ currentTopic, query }) => {
                 </Typography>
                 <Typography color="text.secondary">
                   votes: {article.votes}
+                </Typography>
+                <Typography color="text.secondary">
+                  published:{" "}
+                  {moment(article.created_at).format("DD/MM/YYYY hh:mm:ss")}
                 </Typography>
               </CardContent>
             </Card>

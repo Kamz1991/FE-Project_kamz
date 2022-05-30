@@ -17,7 +17,7 @@ function App() {
         setCurrentTopic={setCurrentTopic}
         currentTopic={currentTopic}
       />
-      <SortByDropDown setQuery={setQuery} />
+      <SortByDropDown setQuery={setQuery} query={query} />
 
       <Routes>
         <Route
