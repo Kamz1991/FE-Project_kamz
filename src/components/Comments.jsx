@@ -21,11 +21,11 @@ const Comments = () => {
         comments={comments}
         setComments={setComments}
       />
-      <h2>Comments</h2>
+      <h2 style={{ display: "flex", justifyContent: "center" }}>Comments</h2>
       <ul className="comments_list">
         {comments.map((comment) => {
           return (
-            <Card>
+            <Card style={{ marginBottom: "20px" }}>
               <CardContent>
                 <Typography variant="h6">{comment.author}</Typography>
                 <Typography>{comment.body}</Typography>

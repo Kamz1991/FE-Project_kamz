@@ -6,6 +6,7 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Comments from "./Comments";
+import VoteButton from "./VoteButton";
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -49,6 +50,7 @@ const SingleArticle = () => {
           <Typography>{article.body}</Typography>
         </CardContent>
       </Card>
+      <VoteButton />
       <Card>
         <Comments />
       </Card>
